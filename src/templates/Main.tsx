@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react';
-import { createContext, useState } from 'react';
+import { MyBoard } from "@/utils/Words";
+import type { ReactNode } from "react";
+import { createContext, useState } from "react";
 
-const BoardContext = createContext(null);
+export const BoardContext = createContext(undefined);
 
 type IMainProps = {
   meta: ReactNode;
@@ -9,7 +10,7 @@ type IMainProps = {
 };
 
 const Main = (props: IMainProps) => {
-  const [board, setBoard] = useState(null);
+  const [board, setBoard] = useState<string[][]>(MyBoard);
   return (
     <BoardContext.Provider value={{ board, setBoard }}>
       <div className="min-h-screen w-full bg-gray-800 px-1 text-gray-100 antialiased">
