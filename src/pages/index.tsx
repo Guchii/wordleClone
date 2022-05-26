@@ -35,7 +35,7 @@ const Index = () => {
     });
   };
 
-  const onSelectLetter = ({ letter }: { letter: string }) => {
+  const onSelectLetter = (letter: string) => {
     if (currentAttempt.letterPos > 4) return;
     const newBoard = [...board];
     newBoard[currentAttempt.attempt][currentAttempt.letterPos] = letter;
