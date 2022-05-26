@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@commitlint/cli': ^16.2.4
   '@commitlint/config-conventional': ^16.2.4
+  '@fontsource/montserrat': ^4.5.10
   '@next/bundle-analyzer': ^12.1.5
   '@testing-library/jest-dom': ^5.16.4
   '@testing-library/react': ^13.1.1
@@ -46,6 +47,7 @@ specifiers:
   typescript: ^4.6.3
 
 dependencies:
+  '@fontsource/montserrat': 4.5.10
   next: 12.1.6_react-dom@18.1.0+react@18.1.0
   next-seo: 5.4.0_d30c2367b03c877b70a67c330200ac54
   react: 18.1.0
@@ -614,6 +616,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@fontsource/montserrat/4.5.10:
+    resolution: {integrity: sha512-JXe9wURwLFtPfrD3yYnfvue/Uv2L1iSEor4w6M5CcGO4iWSoaFgk7BPLUwksGD7ChKpGKpaNNLUt67VlCu2A1g==}
+    dev: false
 
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}

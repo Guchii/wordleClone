@@ -1,7 +1,28 @@
+import { BoardContext } from "@/pages/index";
+import { useCallback, useContext, useEffect } from "react";
+import Key from "./Key";
+
 const KeyBoard = () => {
   const row1: string[] = "qwertyuiop".split("");
   const row2: string[] = "asdfghjkl".split("");
   const row3: string[] = "zxcvbnm".split("");
+  // const handler = useCallback((e) => {
+  //   if (e.key === "Enter") {
+  //   } else if (e.key === "Backspace") {
+  //   } else {
+  //     [row1, row2, row3].map((row) => {
+  //       row.forEach((le) => {
+  //         if (e.key === le) {
+  //           onSelectLetter(le);
+  //         }
+  //       });
+  //     });
+  //   }
+  // });
+  // useEffect(() => {
+  //   document.addEventListener("keydown", handler);
+  //   return () => document.removeEventListener("keydown", handler);
+  // }, [handler]);
   return (
     <div className="mt-4 flex flex-col gap-4">
       <div className="flex gap-2">
@@ -21,21 +42,7 @@ const KeyBoard = () => {
         ))}
         <Key letter="⌫" isBig />
       </div>
-      <div></div>
-      <div></div>
     </div>
-  );
-};
-
-const Key = ({ letter, isBig = false }: { letter: string; isBig: boolean }) => {
-  return (
-    <span
-      className={`grid h-16 w-10 cursor-pointer place-items-center
-            rounded-md bg-gray-900 duration-75
-            active:translate-y-1 font-semibold ${isBig ? "flex-1" : ""}`}
-    >
-      {letter.toUpperCase()}
-    </span>
   );
 };
 

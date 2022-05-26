@@ -1,6 +1,6 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { useContext } from "react";
-import { BoardContext } from "@/templates/Main";
+import { BoardContext } from "@/pages/index";
 
 const Letter = ({
   letterPos,
@@ -14,10 +14,8 @@ const Letter = ({
   return (
     <>
       <span
-        className={`h-16 w-16 bg-gray-900  grid place-items-center
-            active:translate-y-1 duration-75 cursor-pointer
-            rounded-md
-            `}
+        className={`h-16 w-16 bg-gray-900  grid place-items-center duration-75 cursor-pointer
+            rounded-sm uppercase font-semibold`}
       >
         {letter}
       </span>
