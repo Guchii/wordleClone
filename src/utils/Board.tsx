@@ -1,7 +1,7 @@
 import Letter from "@/utils/Letter";
 
 const Board = () => {
-  const noOfAttempts: number = 5;
+  const noOfAttempts: number = 6;
   const noOfLetters: number = 5;
   return (
     <div className="flex flex-col gap-4">

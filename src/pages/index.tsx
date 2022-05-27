@@ -43,8 +43,6 @@ const Index = () => {
   const onEnter = () => {
     if (currentAttempt.letterPos !== 5) return;
     let currentWord = board[currentAttempt.attempt]?.join("");
-    console.log(currentWord);
-    console.log(currentAttempt.attempt);
     if (wordSet.has(currentWord.toLowerCase())) {
       setCurrentAttempt({
         attempt: currentAttempt.attempt + 1,
@@ -58,7 +56,7 @@ const Index = () => {
       setGameOver({ gameOver: true, correctWord: true });
       return;
     }
-    if (currentAttempt.attempt === 4) {
+    if (currentAttempt.attempt === 5) {
       setGameOver({ gameOver: true, correctWord: false });
     }
   };
@@ -91,7 +89,9 @@ const Index = () => {
       }}
     >
       <Main meta={<Meta title="Wordle" description="Beautiful wordle clone" />}>
-        <h1 className="p-4 text-3xl uppercase">Wordle</h1>
+        <h1 className="text-3xl font-bold uppercase py-4 border-b-2 border-b-slate-300 w-full text-center">
+          Wordle
+        </h1>
         <div className="flex flex-col gap-8 lg:flex-row lg:gap-32 items-center justify-between py-8">
           <Board />
           {gameOver.gameOver ? <End /> : <KeyBoard />}
