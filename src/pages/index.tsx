@@ -2,8 +2,8 @@ import { Meta } from "@/layouts/Meta";
 import { Main } from "@/templates/Main";
 import Board from "@/utils/Board";
 import KeyBoard from "@/utils/Keyboard";
-import { MyBoard } from "@/utils/Words";
-import { useState } from "react";
+import { generateWordsSet, MyBoard } from "@/utils/Words";
+import { useEffect, useState } from "react";
 import { createContext } from "react";
 
 export const BoardContext = createContext({});
@@ -14,6 +14,13 @@ const Index = () => {
     attempt: 0,
     letterPos: 0,
   });
+  const [wordSet, setWordSet] = useState(new Set());
+
+  useEffect(() => {
+    generateWordsSet().then((words) => {
+      setWordSet(words.wordSet);
+    });
+  }, []);
 
   const onDelete = () => {
     if (currentAttempt.letterPos === 0) return;
@@ -28,17 +35,22 @@ const Index = () => {
 
   const onEnter = () => {
     if (currentAttempt.letterPos !== 5) return;
-    setCurrentAttempt({
-      ...currentAttempt,
-      attempt: currentAttempt.attempt + 1,
-      letterPos: 0,
-    });
+    let currentWord = board[currentAttempt.attempt]?.join("");
+    console.log(currentWord);
+    if (wordSet.has(currentWord.toLowerCase())) {
+      setCurrentAttempt({
+        attempt: currentAttempt.attempt + 1,
+        letterPos: 0,
+      });
+    } else {
+      alert("Word not found");
+    }
   };
 
   const onSelectLetter = (letter: string) => {
     if (currentAttempt.letterPos > 4) return;
     const newBoard = [...board];
-    newBoard[currentAttempt.letterPos][currentAttempt.attempt] = letter;
+    newBoard[currentAttempt.attempt][currentAttempt.letterPos] = letter;
     setBoard(newBoard);
     setCurrentAttempt({
       ...currentAttempt,

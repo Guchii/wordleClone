@@ -9,38 +9,38 @@ const KeyBoard = () => {
   const row3: string[] = "zxcvbnm".split("");
   const { onEnter, onSelectLetter, onDelete, currAttempt } =
     useContext(BoardContext);
-  // const handler = useCallback(
-  //   (e) => {
-  //     if (e.key === "Enter") {
-  //       onEnter();
-  //     } else if (e.key === "Backspace") {
-  //       onDelete();
-  //     } else {
-  //       row1.forEach((key) => {
-  //         if (e.key.toLowerCase() === key.toLowerCase()) {
-  //           onSelectLetter(key);
-  //         }
-  //       });
-  //       row2.forEach((key) => {
-  //         if (e.key.toLowerCase() === key.toLowerCase()) {
-  //           onSelectLetter(key);
-  //         }
-  //       });
-  //       row3.forEach((key) => {
-  //         if (e.key.toLowerCase() === key.toLowerCase()) {
-  //           onSelectLetter(key);
-  //         }
-  //       });
-  //     }
-  //   },
-  //   [currAttempt]
-  // );
-  // useEffect(() => {
-  //   document.addEventListener("keydown", handler);
-  //   return () => {
-  //     document.removeEventListener("keydown", handler);
-  //   };
-  // }, [handler]);
+  const handler = useCallback(
+    (event) => {
+      if (event.key === "Enter") {
+        onEnter();
+      } else if (event.key === "Backspace") {
+        onDelete();
+      } else {
+        row1.forEach((key) => {
+          if (event.key.toLowerCase() === key.toLowerCase()) {
+            onSelectLetter(key);
+          }
+        });
+        row2.forEach((key) => {
+          if (event.key.toLowerCase() === key.toLowerCase()) {
+            onSelectLetter(key);
+          }
+        });
+        row3.forEach((key) => {
+          if (event.key.toLowerCase() === key.toLowerCase()) {
+            onSelectLetter(key);
+          }
+        });
+      }
+    },
+    [currAttempt]
+  );
+  useEffect(() => {
+    document.addEventListener("keydown", handler);
+    return () => {
+      document.removeEventListener("keydown", handler);
+    };
+  }, [handler]);
   return (
     <div className="mt-4 flex flex-col gap-4">
       <div className="flex gap-2">

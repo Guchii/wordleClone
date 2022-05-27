@@ -10,7 +10,7 @@ const Letter = ({
   AttemptVal: number;
 }) => {
   const { board, correctWord, currentAttempt } = useContext(BoardContext);
-  const letter = board[letterPos][AttemptVal];
+  const letter = board[AttemptVal][letterPos];
   const correct: boolean = correctWord[letterPos] === letter;
   const almost: boolean =
     !correct && letter !== "" && correctWord.includes(letter);
