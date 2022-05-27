@@ -25,7 +25,7 @@ const Index = () => {
   const onDelete = () => {
     if (currentAttempt.letterPos === 0) return;
     const newBoard = [...board];
-    newBoard[currentAttempt.letterPos - 1][currentAttempt.attempt] = "";
+    newBoard[currentAttempt.attempt][currentAttempt.letterPos - 1] = "";
     setBoard(newBoard);
     setCurrentAttempt({
       ...currentAttempt,
