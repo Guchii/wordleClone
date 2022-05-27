@@ -84,7 +84,6 @@ const Index = () => {
         onSelectLetter,
         onDelete,
         onEnter,
-        correctWord,
         disabledLetters,
         setDisabledLetters,
         gameOver,
@@ -93,7 +92,7 @@ const Index = () => {
     >
       <Main meta={<Meta title="Wordle" description="Beautiful wordle clone" />}>
         <h1 className="p-4 text-3xl uppercase">Wordle</h1>
-        <div className="flex sm:flex-col lg:flex-row gap-32 items-center justify-between py-8">
+        <div className="flex flex-col gap-8 lg:flex-row lg:gap-32 items-center justify-between py-8">
           <Board />
           {gameOver.gameOver ? <End /> : <KeyBoard />}
         </div>
