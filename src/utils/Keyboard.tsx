@@ -1,27 +1,45 @@
 import { BoardContext } from "@/pages/index";
 import { useCallback, useContext, useEffect } from "react";
+
 import Key from "./Key";
 
 const KeyBoard = () => {
   const row1: string[] = "qwertyuiop".split("");
   const row2: string[] = "asdfghjkl".split("");
   const row3: string[] = "zxcvbnm".split("");
-  // const handler = useCallback((e) => {
-  //   if (e.key === "Enter") {
-  //   } else if (e.key === "Backspace") {
-  //   } else {
-  //     [row1, row2, row3].map((row) => {
-  //       row.forEach((le) => {
-  //         if (e.key === le) {
-  //           onSelectLetter(le);
+  const { onEnter, onSelectLetter, onDelete, currAttempt } =
+    useContext(BoardContext);
+  // const handler = useCallback(
+  //   (e) => {
+  //     if (e.key === "Enter") {
+  //       onEnter();
+  //     } else if (e.key === "Backspace") {
+  //       onDelete();
+  //     } else {
+  //       row1.forEach((key) => {
+  //         if (e.key.toLowerCase() === key.toLowerCase()) {
+  //           onSelectLetter(key);
   //         }
   //       });
-  //     });
-  //   }
-  // });
+  //       row2.forEach((key) => {
+  //         if (e.key.toLowerCase() === key.toLowerCase()) {
+  //           onSelectLetter(key);
+  //         }
+  //       });
+  //       row3.forEach((key) => {
+  //         if (e.key.toLowerCase() === key.toLowerCase()) {
+  //           onSelectLetter(key);
+  //         }
+  //       });
+  //     }
+  //   },
+  //   [currAttempt]
+  // );
   // useEffect(() => {
   //   document.addEventListener("keydown", handler);
-  //   return () => document.removeEventListener("keydown", handler);
+  //   return () => {
+  //     document.removeEventListener("keydown", handler);
+  //   };
   // }, [handler]);
   return (
     <div className="mt-4 flex flex-col gap-4">

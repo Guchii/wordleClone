@@ -18,7 +18,7 @@ const Index = () => {
   const onDelete = () => {
     if (currentAttempt.letterPos === 0) return;
     const newBoard = [...board];
-    newBoard[currentAttempt.attempt][currentAttempt.letterPos - 1] = "";
+    newBoard[currentAttempt.letterPos - 1][currentAttempt.attempt] = "";
     setBoard(newBoard);
     setCurrentAttempt({
       ...currentAttempt,
@@ -38,13 +38,14 @@ const Index = () => {
   const onSelectLetter = (letter: string) => {
     if (currentAttempt.letterPos > 4) return;
     const newBoard = [...board];
-    newBoard[currentAttempt.attempt][currentAttempt.letterPos] = letter;
+    newBoard[currentAttempt.letterPos][currentAttempt.attempt] = letter;
     setBoard(newBoard);
     setCurrentAttempt({
       ...currentAttempt,
       letterPos: currentAttempt.letterPos + 1,
     });
   };
+  const correctWord = "hello";
 
   return (
     <BoardContext.Provider
@@ -56,6 +57,7 @@ const Index = () => {
         onSelectLetter,
         onDelete,
         onEnter,
+        correctWord,
       }}
     >
       <Main meta={<Meta title="Wordle" description="Beautiful wordle clone" />}>

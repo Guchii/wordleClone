@@ -9,7 +9,7 @@ const Board = () => {
         return (
           <div className="flex gap-4" key={i}>
             {new Array(noOfLetters).fill(1).map((ok, j) => {
-              return <Letter letterPos={i} AttemptVal={j} key={j} />;
+              return <Letter letterPos={j} AttemptVal={i} key={j} />;
             })}
           </div>
         );
