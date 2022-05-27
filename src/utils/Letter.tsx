@@ -17,7 +17,7 @@ const Letter = ({
     }
   }, [currentAttempt.attempt]);
   const letter = board[AttemptVal][letterPos];
-  const correct: boolean = correctWord[letterPos] === letter;
+  const correct: boolean = correctWord.toUpperCase()[letterPos] === letter;
   const almost: boolean =
     !correct && letter !== "" && correctWord.includes(letter);
   return (

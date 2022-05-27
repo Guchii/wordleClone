@@ -21,10 +21,11 @@ const Index = () => {
     gameOver: false,
     correctWord: false,
   });
-
+  const [correctWord, setCorrectedWord] = useState<string | undefined>("");
   useEffect(() => {
     generateWordsSet().then((words) => {
       setWordSet(words.wordSet);
+      setCorrectedWord(words.todaysWord);
     });
   }, []);
 
@@ -51,6 +52,7 @@ const Index = () => {
       });
     } else {
       alert("Word not found");
+      return;
     }
     if (currentWord === correctWord) {
       setGameOver({ gameOver: true, correctWord: true });
@@ -71,7 +73,6 @@ const Index = () => {
       letterPos: currentAttempt.letterPos + 1,
     });
   };
-  const correctWord = "hello";
 
   return (
     <BoardContext.Provider
