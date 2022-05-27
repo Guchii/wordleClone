@@ -1,6 +1,7 @@
 import { Meta } from "@/layouts/Meta";
 import { Main } from "@/templates/Main";
 import Board from "@/utils/Board";
+import End from "@/utils/End";
 import KeyBoard from "@/utils/Keyboard";
 import { generateWordsSet, MyBoard } from "@/utils/Words";
 import { useEffect, useState } from "react";
@@ -15,6 +16,11 @@ const Index = () => {
     letterPos: 0,
   });
   const [wordSet, setWordSet] = useState(new Set());
+  const [disabledLetters, setDisabledLetters] = useState([]);
+  const [gameOver, setGameOver] = useState({
+    gameOver: false,
+    correctWord: false,
+  });
 
   useEffect(() => {
     generateWordsSet().then((words) => {
@@ -37,6 +43,7 @@ const Index = () => {
     if (currentAttempt.letterPos !== 5) return;
     let currentWord = board[currentAttempt.attempt]?.join("");
     console.log(currentWord);
+    console.log(currentAttempt.attempt);
     if (wordSet.has(currentWord.toLowerCase())) {
       setCurrentAttempt({
         attempt: currentAttempt.attempt + 1,
@@ -44,6 +51,13 @@ const Index = () => {
       });
     } else {
       alert("Word not found");
+    }
+    if (currentWord === correctWord) {
+      setGameOver({ gameOver: true, correctWord: true });
+      return;
+    }
+    if (currentAttempt.attempt === 4) {
+      setGameOver({ gameOver: true, correctWord: false });
     }
   };
 
@@ -70,13 +84,17 @@ const Index = () => {
         onDelete,
         onEnter,
         correctWord,
+        disabledLetters,
+        setDisabledLetters,
+        gameOver,
+        correctWord,
       }}
     >
       <Main meta={<Meta title="Wordle" description="Beautiful wordle clone" />}>
         <h1 className="p-4 text-3xl uppercase">Wordle</h1>
         <div className="flex sm:flex-col lg:flex-row gap-32 items-center justify-between py-8">
           <Board />
-          <KeyBoard />
+          {gameOver.gameOver ? <End /> : <KeyBoard />}
         </div>
       </Main>
     </BoardContext.Provider>
