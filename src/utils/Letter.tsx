@@ -18,14 +18,15 @@ const Letter = ({
   }, [currentAttempt.attempt]);
   const letter = board[AttemptVal][letterPos];
   const correct = correctWord[letterPos] === letter.toUpperCase();
-  const almost = !correct && letter !== "" && correctWord.includes(letter);
+  const almost =
+    !correct && letter !== "" && correctWord.includes(letter.toUpperCase());
   return (
     <>
       <span
         className={`h-16 w-16 border-2 border-gray-500  grid place-items-center duration-75 cursor-pointer
         rounded-sm uppercase font-bold ${
           currentAttempt.attempt > AttemptVal &&
-          (correct ? "bg-green-600" : almost ? "bg-yellow-500" : "bg-slate-800")
+          (correct ? "bg-green-600" : almost ? "bg-yellow-600" : "bg-slate-800")
         }`}
       >
         {letter}

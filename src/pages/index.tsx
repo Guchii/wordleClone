@@ -43,7 +43,7 @@ const Index = () => {
 
   const onEnter = () => {
     if (currentAttempt.letterPos !== 5) return;
-    let currentWord = board[currentAttempt.attempt]?.join("");
+    let currentWord = board[currentAttempt.attempt]?.join("").toUpperCase();
     if (wordSet.has(currentWord.toLowerCase())) {
       setCurrentAttempt({
         attempt: currentAttempt.attempt + 1,
@@ -53,6 +53,7 @@ const Index = () => {
       alert("Word not found");
       return;
     }
+    console.log(currentWord, correctWord);
     if (currentWord === correctWord) {
       setGameOver({ gameOver: true, correctWord: true });
       return;
