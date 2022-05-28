@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BoardContext } from "@/pages";
 import { useContext } from "react";
 

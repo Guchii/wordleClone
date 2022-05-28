@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Letter from "@/utils/Letter";
 
 const Board = () => {
