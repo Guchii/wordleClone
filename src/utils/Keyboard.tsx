@@ -9,32 +9,29 @@ const KeyBoard = () => {
   const row3: string[] = "zxcvbnm".split("");
   const { onEnter, onSelectLetter, onDelete, currAttempt, disabledLetters } =
     useContext(BoardContext);
-  const handler = useCallback(
-    (event) => {
-      if (event.key === "Enter") {
-        onEnter();
-      } else if (event.key === "Backspace") {
-        onDelete();
-      } else {
-        row1.forEach((key) => {
-          if (event.key.toLowerCase() === key.toLowerCase()) {
-            onSelectLetter(key);
-          }
-        });
-        row2.forEach((key) => {
-          if (event.key.toLowerCase() === key.toLowerCase()) {
-            onSelectLetter(key);
-          }
-        });
-        row3.forEach((key) => {
-          if (event.key.toLowerCase() === key.toLowerCase()) {
-            onSelectLetter(key);
-          }
-        });
-      }
-    },
-    [currAttempt]
-  );
+  const handler = (event) => {
+    if (event.key === "Enter") {
+      onEnter();
+    } else if (event.key === "Backspace") {
+      onDelete();
+    } else {
+      row1.forEach((key) => {
+        if (event.key.toLowerCase() === key.toLowerCase()) {
+          onSelectLetter(key);
+        }
+      });
+      row2.forEach((key) => {
+        if (event.key.toLowerCase() === key.toLowerCase()) {
+          onSelectLetter(key);
+        }
+      });
+      row3.forEach((key) => {
+        if (event.key.toLowerCase() === key.toLowerCase()) {
+          onSelectLetter(key);
+        }
+      });
+    }
+  };
   useEffect(() => {
     document.addEventListener("keydown", handler);
     return () => {
