@@ -32,7 +32,7 @@ const Index = () => {
   const onDelete = () => {
     if (currentAttempt.letterPos === 0) return;
     const newBoard = [...board];
-    newBoard[currentAttempt.attempt][currentAttempt.letterPos - 1] = "";
+    newBoard[currentAttempt.attempt]![currentAttempt.letterPos - 1] = "";
     setBoard(newBoard);
     setCurrentAttempt({
       ...currentAttempt,
@@ -43,7 +43,7 @@ const Index = () => {
   const onEnter = () => {
     if (currentAttempt.letterPos !== 5) return;
     let currentWord = board[currentAttempt.attempt]?.join("").toUpperCase();
-    if (wordSet.has(currentWord.toLowerCase())) {
+    if (wordSet.has(currentWord!.toLowerCase())) {
       setCurrentAttempt({
         attempt: currentAttempt.attempt + 1,
         letterPos: 0,
@@ -90,13 +90,12 @@ const Index = () => {
     >
       <Main meta={<Meta title="Wordle" description="Beautiful wordle clone" />}>
         <div className="flex gap-4 justify-center items-center w-full py-4 border-b-2 border-b-slate-300">
-          <h1 className="text-3xl font-bold uppercase">Wordle</h1>
-          <button
+          <h1
+            className="text-3xl font-bold uppercase cursor-pointer"
             onClick={() => location.reload()}
-            className="hover:bg-slate-800 duration-75 rounded-full p-4"
           >
-            🔁
-          </button>
+            Wordle
+          </h1>
         </div>
         <div className="flex flex-col gap-8 lg:flex-row lg:gap-32 items-center justify-between py-8">
           <Board />
