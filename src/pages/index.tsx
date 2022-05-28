@@ -25,7 +25,8 @@ const Index = () => {
   useEffect(() => {
     generateWordsSet().then((words) => {
       setWordSet(words.wordSet);
-      setCorrectedWord(words.todaysWord);
+      setCorrectedWord(words.todaysWord?.toUpperCase());
+      console.log(words.todaysWord);
     });
   }, []);
 
@@ -64,7 +65,7 @@ const Index = () => {
   const onSelectLetter = (letter: string) => {
     if (currentAttempt.letterPos > 4) return;
     const newBoard = [...board];
-    newBoard[currentAttempt.attempt][currentAttempt.letterPos] = letter;
+    newBoard[currentAttempt.attempt]![currentAttempt.letterPos] = letter;
     setBoard(newBoard);
     setCurrentAttempt({
       ...currentAttempt,
