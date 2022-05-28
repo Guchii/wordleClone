@@ -26,7 +26,6 @@ const Index = () => {
     generateWordsSet().then((words) => {
       setWordSet(words.wordSet);
       setCorrectedWord(words.todaysWord?.toUpperCase());
-      console.log(words.todaysWord);
     });
   }, []);
 
@@ -53,7 +52,6 @@ const Index = () => {
       alert("Word not found");
       return;
     }
-    console.log(currentWord, correctWord);
     if (currentWord === correctWord) {
       setGameOver({ gameOver: true, correctWord: true });
       return;
@@ -91,9 +89,15 @@ const Index = () => {
       }}
     >
       <Main meta={<Meta title="Wordle" description="Beautiful wordle clone" />}>
-        <h1 className="text-3xl font-bold uppercase py-4 border-b-2 border-b-slate-300 w-full text-center">
-          Wordle
-        </h1>
+        <div className="flex gap-4 justify-center items-center w-full py-4 border-b-2 border-b-slate-300">
+          <h1 className="text-3xl font-bold uppercase">Wordle</h1>
+          <button
+            onClick={() => location.reload()}
+            className="hover:bg-slate-800 duration-75 rounded-full p-4"
+          >
+            🔁
+          </button>
+        </div>
         <div className="flex flex-col gap-8 lg:flex-row lg:gap-32 items-center justify-between py-8">
           <Board />
           {gameOver.gameOver ? <End /> : <KeyBoard />}
