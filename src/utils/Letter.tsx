@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BoardContext } from "@/pages/index";
 /* eslint-disable unused-imports/no-unused-vars */
 import { useContext, useEffect } from "react";
@@ -9,10 +10,20 @@ const Letter = ({
   letterPos: number;
   AttemptVal: number;
 }) => {
-  const { board, correctWord, currentAttempt, setDisabledLetters } =
-    useContext(BoardContext);
+  const {
+    board,
+    correctWord,
+    currentAttempt,
+    setDisabledLetters,
+    setCorrectLetters,
+    setAlmostLetters,
+  } = useContext(BoardContext);
   useEffect(() => {
-    if (letter !== "" && !correct && !almost) {
+    if (correct) {
+      setCorrectLetters((prev) => [...prev, letter]);
+    } else if (almost) {
+      setAlmostLetters((prev) => [...prev, letter]);
+    } else if (letter !== "") {
       setDisabledLetters((prev) => [...prev, letter]);
     }
   }, [currentAttempt.attempt]);

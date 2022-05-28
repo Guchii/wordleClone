@@ -4,10 +4,30 @@ import Board from "@/utils/Board";
 import End from "@/utils/End";
 import KeyBoard from "@/utils/Keyboard";
 import { generateWordsSet, MyBoard } from "@/utils/Words";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { createContext } from "react";
 
-export const BoardContext = createContext({});
+export const BoardContext = createContext<BoardContextType>({});
+
+type BoardContextType = {
+  board?: string[][];
+  setBoard?: Dispatch<SetStateAction<string[][]>>;
+  currentAttempt?: { attempt: number; letterPos: number };
+  setCurrentAttempt?: Dispatch<
+    SetStateAction<{ attempt: number; letterPos: number }>
+  >;
+  onSelectLetter?: (letter: string) => void;
+  onDelete?: () => void;
+  onEnter?: () => void;
+  disabledLetters?: string[];
+  setDisabledLetters?: Dispatch<SetStateAction<string[]>>;
+  correctLetters?: string[];
+  setCorrectLetters?: Dispatch<SetStateAction<string[]>>;
+  almostLetters?: string[];
+  setAlmostLetters?: Dispatch<SetStateAction<string[]>>;
+  gameOver?: { gameOver: boolean; correctWord: boolean };
+  correctWord?: string;
+};
 
 const Index = () => {
   const [board, setBoard] = useState<string[][]>(MyBoard);
@@ -16,7 +36,9 @@ const Index = () => {
     letterPos: 0,
   });
   const [wordSet, setWordSet] = useState(new Set());
-  const [disabledLetters, setDisabledLetters] = useState([]);
+  const [disabledLetters, setDisabledLetters] = useState([""]);
+  const [almostLetters, setAlmostLetters] = useState([""]);
+  const [correctLetters, setCorrectLetters] = useState([""]);
   const [gameOver, setGameOver] = useState({
     gameOver: false,
     correctWord: false,
@@ -84,6 +106,10 @@ const Index = () => {
         onEnter,
         disabledLetters,
         setDisabledLetters,
+        correctLetters,
+        setCorrectLetters,
+        almostLetters,
+        setAlmostLetters,
         gameOver,
         correctWord,
       }}
